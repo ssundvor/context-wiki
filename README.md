@@ -2,7 +2,7 @@
 
 A system for building a personal knowledge base maintained by an LLM. You curate the sources; the LLM writes, updates, and cross-references the wiki.
 
-Read [llm-wiki.md](llm-wiki.md) for the full concept. This repo is a working implementation.
+This repo is a working implementation you can clone and start using.
 
 ## How it works
 
@@ -32,11 +32,11 @@ The wiki-ingest skill and content-sync command tell Claude Code how to operate o
 ```bash
 # Skill (user-level — available in all projects)
 mkdir -p ~/.claude/skills/wiki-ingest
-cp .claude/skills/wiki-ingest/SKILL.md ~/.claude/skills/wiki-ingest/SKILL.md
+cp skills/wiki-ingest/SKILL.md ~/.claude/skills/wiki-ingest/SKILL.md
 
 # Command (project-level — available when you're in this repo)
 mkdir -p .claude/commands
-cp .claude/commands/content-sync.md .claude/commands/content-sync.md
+cp commands/content-sync.md .claude/commands/content-sync.md
 ```
 
 ### 3. Export your sources
@@ -84,17 +84,15 @@ The LLM reads `wiki/index.md` to find relevant pages, then reads those pages to 
 llm-wiki/
 ├── CLAUDE.md                  # Schema pointer — loaded every conversation
 ├── wiki-schema.md             # Full page templates, operations, conventions
-├── llm-wiki.md                # The concept document
+├── commands/
+│   └── content-sync.md        # /content-sync slash command
+├── skills/
+│   └── wiki-ingest/
+│       └── SKILL.md           # Wiki ingest skill
 ├── scripts/
 │   ├── claude-code-export.py  # Export Claude Code sessions to markdown
 │   ├── granola-api-export.py  # Export Granola transcripts to markdown
 │   └── .env.example           # API key template
-├── .claude/
-│   ├── commands/
-│   │   └── content-sync.md    # /content-sync slash command
-│   └── skills/
-│       └── wiki-ingest/
-│           └── SKILL.md       # Wiki ingest skill
 ├── raw/                       # Raw source files (gitignored)
 │   ├── granola/               # Exported meeting transcripts
 │   ├── claude-code/           # Exported coding sessions

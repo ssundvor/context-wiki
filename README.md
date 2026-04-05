@@ -1,4 +1,4 @@
-# LLM Wiki
+# Context Wiki
 
 A system for building a personal knowledge base maintained by an LLM. You curate the sources; the LLM writes, updates, and cross-references the wiki.
 

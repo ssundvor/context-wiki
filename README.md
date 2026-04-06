@@ -52,21 +52,48 @@ python3 scripts/claude-code-export.py --days 14
 # Use --all for full history, --resummarize to regenerate summaries
 ```
 
-### 4. Ingest into the wiki
+### 4. First run (bootstrap)
 
-Open Claude Code in this directory and run:
+The first time, you'll have a backlog of raw files and no wiki yet. The ingest skill detects this (no `wiki/.last-compile` file) and processes everything.
+
+```bash
+# Export full history
+python3 scripts/granola-api-export.py --all
+python3 scripts/claude-code-export.py --all
+```
+
+Then open Claude Code in this directory and run:
 
 ```
-/content-sync          # Export + ingest in one step
+ingest the wiki
+```
+
+The LLM will process files in chronological batches (one ISO week at a time, oldest first) so wiki pages build up naturally — a project page created in week 1 gets appended in week 2. For ~250 files this takes multiple rounds but produces a complete wiki.
+
+**Tips for bootstrap:**
+- Read files yourself using parallel Read calls — don't delegate to subagents (slow and unreliable)
+- Batch 4-6 file reads per round for speed
+- Claude Code sessions often start with navigation but continue into substantive work — always read them in full, not just the summary
+- Write all wiki page updates at the end of each weekly batch, not one-at-a-time during reading
+- People pages need entries from group meetings too (exec huddles, staff meetings, team weeklies), not just 1:1s
+
+### 5. Weekly sync
+
+After bootstrap, run weekly (or twice weekly):
+
+```
+/content-sync          # Export last 14 days + ingest new files
 ```
 
 Or separately:
 
 ```
-ingest the wiki        # Just the wiki-ingest step
+ingest the wiki        # Just process whatever's in raw/ since last compile
 ```
 
-### 5. Query
+This takes under 5 minutes for a typical 10-30 file incremental run.
+
+### 6. Query
 
 Ask questions in Claude Code while in this directory:
 

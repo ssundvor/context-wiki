@@ -137,7 +137,9 @@ Process new raw sources into the wiki. Run via `/wiki-ingest` or `/content-sync`
 
 5. **Update topic pages.** For existing topics, update Key Points and Current Thinking if the new material adds or changes anything. For new topics, create a new page.
 
-6. **Update people pages.** Add a Recent Interactions entry for people who were meaningfully involved (not just attendees who didn't speak). Create new person pages for people who come up frequently and don't have one yet.
+6. **Update people pages.** Add a Recent Interactions entry for people who meaningfully participated — not just 1:1s, but also recurring leadership meetings (exec huddles, staff meetings, team weeklies) and any meeting where the person spoke substantively or a decision was made about them. People pages should accumulate interactions over time. Create new person pages for people who come up frequently and don't have one yet.
+
+   **Always update `last_updated` in frontmatter** when editing any wiki page — not just when creating it.
 
 7. **Update weekly digest.** Create or update the relevant week's page. Add to the narrative, decisions, and sources list.
 
